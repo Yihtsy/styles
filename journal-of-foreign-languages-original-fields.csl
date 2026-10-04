@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-US" initialize-with=". ">
+  <info>
+    <title>外国语（Original 字段版）</title>
+    <id>http://www.zotero.org/styles/journal-of-foreign-languages-original-fields</id>
+    <link href="http://www.zotero.org/styles/journal-of-foreign-languages-original-fields" rel="self"/>
+    <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
+    <category citation-format="numeric"/><category field="linguistics"/><issn>1004-5139</issn>
+    <summary>Original 字段版。格式证据：《外国语》2025年及2026年样刊；适用于已核验的2025—2026年版式，跨年度使用宜复核。中文来源优先读取 Extra 的 original-* 字段，外文来源及无原文字段条目读取普通字段；参考文献按正文引文顺序编号并输出文献类型标识。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated><rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+  <locale xml:lang="en"><terms><term name="page-range-delimiter">−</term><term name="et-al">et al.</term></terms></locale>
+  <macro name="year"><date variable="issued"><date-part name="year"/></date></macro>
+  <macro name="type-marker"><choose><if type="article-journal article-magazine article-newspaper" match="any"><text value="[J]"/></if><else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value="[C]"/></else-if><else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text value="[M]"/></else-if><else-if type="thesis"><text value="[D]"/></else-if><else-if type="webpage post post-weblog" match="any"><text value="[EB/OL]"/></else-if><else><text value="[Z]"/></else></choose></macro>
+  <macro name="author"><choose><if variable="original-author"><names variable="original-author"><name initialize="false" name-as-sort-order="all" sort-separator="" delimiter=", "/></names></if><else><names variable="author"><name initialize-with=". " name-as-sort-order="first" sort-separator=", " delimiter=", " and="symbol" delimiter-precedes-last="never"/><substitute><names variable="editor"/><text variable="title"/></substitute></names></else></choose></macro>
+  <macro name="title"><choose><if variable="original-title"><text variable="original-title"/></if><else><text variable="title"/></else></choose></macro>
+  <macro name="container"><choose><if variable="original-container-title"><text variable="original-container-title"/></if><else><text variable="container-title"/></else></choose></macro>
+  <macro name="publisher"><choose><if variable="original-publisher"><text variable="original-publisher"/></if><else><text variable="publisher"/></else></choose></macro>
+  <macro name="place"><choose><if variable="original-publisher-place"><text variable="original-publisher-place"/></if><else><text variable="publisher-place"/></else></choose></macro>
+  <macro name="editors"><names variable="editor"><name initialize-with=". " name-as-sort-order="first" sort-separator=", " delimiter=", " and="symbol" delimiter-precedes-last="never"/></names></macro>
+  <macro name="translator"><names variable="translator"><name initialize="false" delimiter=", " name-as-sort-order="all" sort-separator=""/><label form="short" prefix=", "/></names></macro>
+  <macro name="book-title"><choose><if variable="original-title"><text macro="title"/></if><else><text macro="title" font-style="italic"/></else></choose></macro>
+  <macro name="journal-title"><choose><if variable="original-container-title"><text macro="container"/></if><else><text macro="container" font-style="italic"/></else></choose></macro>
+  <macro name="book-container"><choose><if variable="original-container-title"><text macro="container"/></if><else><text macro="container" font-style="italic"/></else></choose></macro>
+  <macro name="entry"><text macro="author" suffix=". "/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="title"/><text macro="type-marker"/><text macro="journal-title" prefix=". "/><text macro="year" prefix=", " suffix=", "/><text variable="volume"/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text macro="title"/><text macro="type-marker"/><text value="//"/><text macro="editors" prefix=" "/><text macro="book-container" prefix=". "/><group delimiter=": " prefix=". "><text macro="place"/><text macro="publisher"/></group><text macro="year" prefix=", "/><text variable="page" prefix=". "/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text macro="book-title"/><text macro="type-marker"/><text macro="translator" prefix=". "/><group delimiter=": " prefix=". "><text macro="place"/><text macro="publisher"/></group><text macro="year" prefix=", "/></else-if>
+    <else-if type="thesis"><text macro="title"/><text macro="type-marker"/><text macro="place" prefix=". "/><text macro="publisher" prefix=": "/><text macro="year" prefix=", "/></else-if>
+    <else><text macro="title"/><text macro="type-marker"/><text macro="container" prefix=". "/><text macro="publisher" prefix=". "/><text variable="URL" prefix=". "/></else>
+  </choose></macro>
+  <citation collapse="citation-number"><layout prefix="[" suffix="]" delimiter=", "><text variable="citation-number"/></layout></citation>
+  <bibliography second-field-align="flush" entry-spacing="0" et-al-min="6" et-al-use-first="3"><layout suffix="."><text variable="citation-number" prefix="[" suffix="] "/><text macro="entry"/></layout></bibliography>
+</style>

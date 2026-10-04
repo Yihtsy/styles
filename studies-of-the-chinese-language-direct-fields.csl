@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="zh-CN" initialize-with=". ">
+  <info>
+    <title>中国语文（普通字段直出版）</title>
+    <id>http://www.zotero.org/styles/studies-of-the-chinese-language-direct-fields</id>
+    <link href="http://www.zotero.org/styles/studies-of-the-chinese-language-direct-fields" rel="self"/>
+    <link href="http://www.zgyw.org.cn/" rel="documentation"/>
+    <author>
+      <name>Tsy Yih</name>
+      <email>yihtsy@outlook.com</email>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="linguistics"/>
+    <issn>0578-1949</issn>
+    <summary>普通字段直出版。格式证据：《中国语文》2023年第2期多篇文章；适用于已核验的2023年版式，其他年份使用宜复核。作者、题名、刊名、出版社等全部直接读取 Zotero 普通字段，不读取 Extra 中的 original-* 字段；中文条目请将 Language 设为 zh-CN。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+
+  <locale xml:lang="zh-CN">
+    <terms>
+      <term name="et-al">等</term>
+      <term name="page-range-delimiter">－</term>
+      <term name="editor" form="short">ed.</term>
+      <term name="editor" form="short" plural="true">eds.</term>
+    </terms>
+  </locale>
+
+  <macro name="author-chinese">
+    <names variable="author">
+      <name delimiter=" " delimiter-precedes-last="never" initialize="false" initialize-with="" name-as-sort-order="all" sort-separator=""/>
+      <substitute><names variable="editor"/><text variable="title"/></substitute>
+    </names>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued"><date-part name="year"/></date>
+  </macro>
+
+  <macro name="sort-script-group">
+    <choose>
+      <if locale="zh"><text value="0"/></if>
+      <else><text value="1"/></else>
+    </choose>
+  </macro>
+
+  <macro name="chinese-entry">
+    <group delimiter=" ">
+      <text macro="author-chinese"/>
+      <text macro="year"/>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <group delimiter="，">
+            <text variable="title" prefix="《" suffix="》"/>
+            <group>
+              <text variable="container-title" prefix="《" suffix="》"/>
+              <text variable="issue" prefix="第 " suffix=" 期"/>
+              <text variable="page" prefix="，"/>
+            </group>
+          </group>
+        </if>
+        <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
+          <group delimiter="，">
+            <text variable="title" prefix="《" suffix="》"/>
+            <text variable="container-title" prefix="《" suffix="》"/>
+            <text variable="publisher"/>
+            <text variable="page"/>
+          </group>
+        </else-if>
+        <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any">
+          <group delimiter="，">
+            <text variable="title" prefix="《" suffix="》"/>
+            <text variable="publisher"/>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group delimiter="，">
+            <text variable="title" prefix="《" suffix="》"/>
+            <text variable="publisher" suffix="学位论文"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter="，">
+            <text variable="title" prefix="《" suffix="》"/>
+            <text variable="container-title"/>
+            <text variable="publisher"/>
+          </group>
+        </else>
+      </choose>
+    </group>
+  </macro>
+
+  <macro name="foreign-author">
+    <names variable="author">
+      <name and="text" delimiter="，" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="first" sort-separator="，"/>
+      <substitute><names variable="editor"/><text variable="title"/></substitute>
+    </names>
+  </macro>
+
+  <macro name="author-direct">
+    <choose>
+      <if locale="zh"><text macro="author-chinese"/></if>
+      <else><text macro="foreign-author"/></else>
+    </choose>
+  </macro>
+
+  <macro name="foreign-entry">
+    <group delimiter=" ">
+      <text macro="foreign-author"/>
+      <text macro="year"/>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <group delimiter="．">
+            <text variable="title"/>
+            <group>
+              <text variable="container-title" font-style="italic"/>
+              <text variable="volume" prefix=" "/>
+              <text variable="issue" prefix="(" suffix=")"/>
+              <text variable="page" prefix="，"/>
+            </group>
+          </group>
+        </if>
+        <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
+          <group delimiter="．">
+            <text variable="title"/>
+            <group delimiter=" ">
+              <text value="In"/>
+              <names variable="editor">
+                <name and="text" delimiter="，" delimiter-precedes-last="never" initialize-with=". "/>
+                <label form="short" prefix=" (" suffix=")"/>
+              </names>
+            </group>
+            <group delimiter="，">
+              <text variable="container-title" font-style="italic"/>
+              <text variable="page"/>
+            </group>
+            <group delimiter=": "><text variable="publisher-place"/><text variable="publisher"/></group>
+          </group>
+        </else-if>
+        <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any">
+          <group delimiter="．">
+            <text variable="title" font-style="italic"/>
+            <group delimiter=": "><text variable="publisher-place"/><text variable="publisher"/></group>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group delimiter="．">
+            <text variable="title" font-style="italic"/>
+            <group delimiter="，"><text variable="genre"/><text variable="publisher"/></group>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter="．"><text variable="title"/><text variable="container-title"/><text variable="URL"/></group>
+        </else>
+      </choose>
+    </group>
+  </macro>
+
+  <macro name="entry">
+    <choose>
+      <if locale="zh">
+        <text macro="chinese-entry"/>
+        <text value="。"/>
+      </if>
+      <else>
+        <text macro="foreign-entry"/>
+        <text value="．"/>
+      </else>
+    </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
+    <sort><key macro="year"/><key macro="author-direct"/></sort>
+    <layout prefix="（" suffix="）" delimiter="；">
+      <group delimiter=" ">
+        <text macro="author-direct"/>
+        <text macro="year"/>
+        <text variable="locator" prefix="："/>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true" entry-spacing="0" et-al-min="4" et-al-use-first="3">
+    <sort>
+      <key macro="sort-script-group"/>
+      <key macro="author-direct"/>
+      <key macro="year"/>
+    </sort>
+    <layout><text macro="entry"/></layout>
+  </bibliography>
+</style>

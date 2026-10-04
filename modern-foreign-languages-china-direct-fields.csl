@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-US" initialize-with=". ">
+  <info>
+    <title>现代外语（普通字段直出版）</title>
+    <id>http://www.zotero.org/styles/modern-foreign-languages-china-direct-fields</id>
+    <link href="http://www.zotero.org/styles/modern-foreign-languages-china-direct-fields" rel="self"/>
+    <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
+    <category citation-format="author-date"/><category field="linguistics"/><issn>1003-6105</issn>
+    <summary>普通字段直出版。格式证据：《现代外语》2024年第4期及2025年样刊；适用于已核验的2024—2025年版式，跨年度使用宜复核。作者、题名、刊名、出版社等全部读取 Zotero 普通字段，不读取 Extra 的 original-* 字段。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated><rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+  <locale xml:lang="en"><terms><term name="page-range-delimiter">-</term><term name="et-al">et al.</term></terms></locale>
+  <macro name="year"><date variable="issued"><date-part name="year"/></date></macro>
+  <macro name="cite-author"><names variable="author"><name form="short" and="symbol" delimiter=", " delimiter-precedes-last="never"/><substitute><names variable="editor"/><text variable="title" form="short"/></substitute></names></macro>
+  <macro name="author"><names variable="author"><name initialize-with=". " name-as-sort-order="first" sort-separator=", " delimiter=", " and="symbol" delimiter-precedes-last="never"/><substitute><names variable="editor"><name initialize-with=". " name-as-sort-order="first" sort-separator=", " delimiter=", " and="symbol" delimiter-precedes-last="never"/><label form="short" prefix=" (" suffix=")"/></names><text variable="title"/></substitute></names></macro>
+  <macro name="volume-issue"><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></macro>
+  <macro name="editors"><names variable="editor"><name initialize-with=". " delimiter=", " and="symbol" delimiter-precedes-last="never"/><label form="short" prefix=" (" suffix=")"/></names></macro>
+  <macro name="edition"><choose><if is-numeric="edition"><number variable="edition" form="ordinal" suffix=" edn"/></if><else><text variable="edition"/></else></choose></macro>
+  <macro name="publisher"><group delimiter=": "><text variable="publisher-place"/><text variable="publisher"/></group></macro>
+  <macro name="entry"><text macro="author"/><text macro="year" prefix=". " suffix=". "/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text variable="title" suffix=". "/><text variable="container-title" font-style="italic"/><choose><if variable="volume"><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/></if><else><text variable="issue" prefix=" (" suffix=")"/></else></choose><text variable="page" prefix=": "/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text variable="title" suffix=". "/><choose><if variable="editor"><text value="In "/><text macro="editors"/><text variable="container-title" font-style="italic" prefix=". "/></if><else><text variable="container-title" font-style="italic"/></else></choose><text macro="publisher" prefix=". "/><text variable="page" prefix=", "/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text variable="title" font-style="italic"/><text macro="edition" prefix=" (" suffix=")"/><text macro="publisher" prefix=". "/></else-if>
+    <else-if type="thesis"><text variable="title" font-style="italic"/><text variable="genre" prefix=". "/><text variable="publisher" prefix=", "/></else-if>
+    <else><text variable="title"/><text variable="container-title" prefix=". "/><text macro="publisher" prefix=". "/><text variable="URL" prefix=". "/></else>
+  </choose></macro>
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true"><sort><key macro="year"/><key macro="cite-author"/></sort><layout prefix="(" suffix=")" delimiter="; "><group delimiter=" "><text macro="cite-author"/><text macro="year"/><text variable="locator" prefix=": "/></group></layout></citation>
+  <bibliography hanging-indent="true" entry-spacing="0" et-al-min="6" et-al-use-first="3"><sort><key macro="author"/><key macro="year"/><key variable="title"/></sort><layout suffix="."><text macro="entry"/></layout></bibliography>
+</style>

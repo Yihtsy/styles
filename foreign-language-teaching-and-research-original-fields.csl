@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-US" initialize-with=". ">
+  <info>
+    <title>外语教学与研究（Original 字段版）</title>
+    <id>http://www.zotero.org/styles/foreign-language-teaching-and-research-original-fields</id>
+    <link href="http://www.zotero.org/styles/foreign-language-teaching-and-research-original-fields" rel="self"/>
+    <link href="https://zotero-chinese.com/styles/外语教学与研究" rel="template"/>
+    <link href="https://wjyy.cbpt.cnki.net/" rel="documentation"/>
+    <author>
+      <name>Tsy Yih</name>
+      <email>yihtsy@outlook.com</email>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="linguistics"/>
+    <issn>1000-0429</issn>
+    <summary>Original 字段版。格式证据：《外语教学与研究》2024年第4期、2026年第3期；适用于已核验的2024—2026年版式，跨年度使用宜复核。英文/罗马化信息读取普通字段，中文原文读取 Extra 中的 Original Author、Original Title、Original Container Title 等字段。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+
+  <locale xml:lang="en">
+    <terms>
+      <term name="et-al">et al.</term>
+      <term name="page-range-delimiter">–</term>
+    </terms>
+  </locale>
+
+  <macro name="author-citation">
+    <names variable="author">
+      <name form="short" and="symbol" delimiter=", " delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-bibliography">
+    <choose>
+      <if variable="original-author">
+        <names variable="author">
+          <name and="symbol" delimiter=", " delimiter-precedes-last="never" initialize="false" name-as-sort-order="first" sort-separator=", "/>
+          <substitute><names variable="editor"/><text variable="title"/></substitute>
+        </names>
+      </if>
+      <else>
+        <names variable="author">
+          <name and="symbol" delimiter=", " delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="first" sort-separator=", "/>
+          <substitute>
+            <names variable="editor">
+              <name and="symbol" delimiter=", " delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="first" sort-separator=", "/>
+              <label form="short" prefix=" (" suffix=")"/>
+            </names>
+            <text variable="title"/>
+          </substitute>
+        </names>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="original-author">
+    <choose>
+      <if variable="original-author">
+        <names variable="original-author">
+          <name delimiter="、" delimiter-precedes-last="never" initialize="false" initialize-with="" name-as-sort-order="all" sort-separator=""/>
+        </names>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="issued-year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="type-marker">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any"><text value="[J]"/></if>
+      <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value="[A]"/></else-if>
+      <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text value="[M]"/></else-if>
+      <else-if type="thesis"><text value="[D]"/></else-if>
+      <else-if type="webpage post post-weblog" match="any"><text value="[EB/OL]"/></else-if>
+    </choose>
+  </macro>
+
+  <macro name="editor-block">
+    <names variable="editor">
+      <name and="symbol" delimiter=", " delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="first" sort-separator=", "/>
+      <label form="short" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <number variable="edition" form="ordinal" suffix=" edition"/>
+      </if>
+      <else><text variable="edition"/></else>
+    </choose>
+  </macro>
+
+  <macro name="publisher">
+    <group delimiter=": ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+    </group>
+  </macro>
+
+  <macro name="original-author-block">
+    <choose>
+      <if variable="original-author">
+        <group prefix="[ " suffix=" ]">
+          <text macro="original-author"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="original-source-block">
+    <choose>
+      <if variable="original-title original-container-title" match="any">
+        <group prefix="[ " suffix=" ]">
+          <group delimiter="，">
+            <text variable="original-title"/>
+            <group>
+              <text variable="original-container-title" prefix="《" suffix="》"/>
+              <text variable="issue"/>
+            </group>
+          </group>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="entry">
+    <group delimiter=". ">
+      <group delimiter=" ">
+        <text macro="author-bibliography"/>
+        <text macro="original-author-block"/>
+      </group>
+      <text macro="issued-year"/>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <group delimiter=". ">
+            <group delimiter=" ">
+              <text variable="title"/>
+              <text macro="type-marker"/>
+            </group>
+            <group>
+              <text variable="container-title" font-style="italic"/>
+              <group prefix=" (" suffix=")" delimiter="/">
+                <text variable="volume"/>
+                <text variable="issue"/>
+              </group>
+              <text variable="page" prefix=": "/>
+            </group>
+          </group>
+        </if>
+        <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
+          <group delimiter=". ">
+            <group delimiter=" ">
+              <text variable="title"/>
+              <text macro="type-marker"/>
+            </group>
+            <group delimiter=" ">
+              <text value="In"/>
+              <text macro="editor-block"/>
+            </group>
+            <group delimiter=" ">
+              <text variable="container-title" font-style="italic"/>
+              <text value="[C]"/>
+            </group>
+            <text macro="publisher"/>
+            <text variable="page"/>
+          </group>
+        </else-if>
+        <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any">
+          <group delimiter=". ">
+            <group delimiter=" ">
+              <text variable="title" font-style="italic"/>
+              <text macro="type-marker"/>
+            </group>
+            <text macro="edition"/>
+            <text macro="publisher"/>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group delimiter=". ">
+            <group delimiter=" ">
+              <text variable="title" font-style="italic"/>
+              <text macro="type-marker"/>
+            </group>
+            <text variable="genre"/>
+            <text variable="publisher"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=". ">
+            <group delimiter=" "><text variable="title"/><text macro="type-marker"/></group>
+            <text variable="container-title"/>
+            <text macro="publisher"/>
+            <text variable="URL"/>
+          </group>
+        </else>
+      </choose>
+      <text macro="original-source-block"/>
+    </group>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
+    <sort>
+      <key macro="issued-year"/>
+      <key macro="author-citation"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=" ">
+        <text macro="author-citation"/>
+        <text macro="issued-year"/>
+        <text variable="locator" prefix=": "/>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="4" et-al-use-first="1" hanging-indent="true" entry-spacing="0">
+    <sort>
+      <key macro="author-bibliography"/>
+      <key macro="issued-year"/>
+      <key variable="title"/>
+    </sort>
+    <layout suffix=".">
+      <text macro="entry"/>
+    </layout>
+  </bibliography>
+</style>

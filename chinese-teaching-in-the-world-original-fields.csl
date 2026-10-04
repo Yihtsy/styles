@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="zh-CN" initialize-with=". ">
+  <info>
+    <title>世界汉语教学（Original 字段版）</title>
+    <id>http://www.zotero.org/styles/chinese-teaching-in-the-world-original-fields</id>
+    <link href="http://www.zotero.org/styles/chinese-teaching-in-the-world-original-fields" rel="self"/>
+    <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
+    <category citation-format="author-date"/><category field="linguistics"/><issn>1002-5804</issn>
+    <summary>Original 字段版。格式证据：《世界汉语教学》2020年第2期多篇文章；适用于已核验的2020年版式，其他年份使用宜复核。中文来源优先读取 Extra 的 original-* 字段，外文来源及缺少原文字段的条目读取普通字段；参考文献按中文在前、外文在后排列。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated><rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+  <locale xml:lang="zh-CN"><terms><term name="page-range-delimiter">－</term><term name="et-al">等</term></terms></locale>
+  <macro name="year"><date variable="issued"><date-part name="year"/></date></macro>
+  <macro name="is-chinese"><choose><if variable="original-author original-title" match="any"><text value="0"/></if><else><text value="1"/></else></choose></macro>
+  <macro name="author-chinese"><choose><if variable="original-author"><names variable="original-author"><name initialize="false" name-as-sort-order="all" sort-separator="" delimiter="、" delimiter-precedes-last="never"/></names></if><else><names variable="author"><name initialize="false" name-as-sort-order="all" sort-separator="" delimiter="、" delimiter-precedes-last="never"/><substitute><names variable="editor"/><text variable="title"/></substitute></names></else></choose></macro>
+  <macro name="title-chinese"><choose><if variable="original-title"><text variable="original-title"/></if><else><text variable="title"/></else></choose></macro>
+  <macro name="container-chinese"><choose><if variable="original-container-title"><text variable="original-container-title"/></if><else><text variable="container-title"/></else></choose></macro>
+  <macro name="publisher-chinese"><choose><if variable="original-publisher"><text variable="original-publisher"/></if><else><text variable="publisher"/></else></choose></macro>
+  <macro name="place-chinese"><choose><if variable="original-publisher-place"><text variable="original-publisher-place"/></if><else><text variable="publisher-place"/></else></choose></macro>
+  <macro name="foreign-author"><names variable="author"><name initialize="false" name-as-sort-order="first" sort-separator=", " delimiter=", " and="symbol" delimiter-precedes-last="never"/><substitute><names variable="editor"/><text variable="title"/></substitute></names></macro>
+  <macro name="cite-author"><choose><if variable="original-author"><names variable="original-author"><name form="short" delimiter="、"/></names></if><else><names variable="author"><name form="short" and="symbol" delimiter=", " delimiter-precedes-last="never"/></names></else></choose></macro>
+  <macro name="translator"><names variable="translator" prefix="，" suffix="译"><name initialize="false" name-as-sort-order="all" sort-separator="" delimiter="、"/></names></macro>
+  <macro name="chinese-entry"><text macro="author-chinese"/><text macro="year" prefix="（" suffix="）"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="title-chinese"/><text macro="container-chinese" prefix="，《" suffix="》"/><text variable="issue" prefix="第" suffix="期"/><text variable="page" prefix="："/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text macro="title-chinese"/><text macro="container-chinese" prefix="，《" suffix="》"/><group delimiter="：" prefix="，"><text macro="place-chinese"/><text macro="publisher-chinese"/></group><text variable="page" prefix="，"/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text macro="title-chinese" prefix="《" suffix="》"/><text macro="translator"/><group delimiter="：" prefix="，"><text macro="place-chinese"/><text macro="publisher-chinese"/></group></else-if>
+    <else-if type="thesis"><text macro="title-chinese"/><text variable="publisher" prefix="，"/><text variable="genre" prefix="，"/></else-if>
+    <else><text macro="title-chinese"/><text macro="container-chinese" prefix="，《" suffix="》"/><text macro="publisher-chinese" prefix="，"/></else>
+  </choose></macro>
+  <macro name="foreign-editors"><names variable="editor"><name initialize="false" delimiter=", " and="symbol" delimiter-precedes-last="never"/><label form="short" prefix="（" suffix="）"/></names></macro>
+  <macro name="foreign-publisher"><group delimiter=": "><text variable="publisher-place"/><text variable="publisher"/></group></macro>
+  <macro name="foreign-entry"><text macro="foreign-author"/><text macro="year" prefix="（" suffix="）"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text variable="title"/><text variable="container-title" font-style="italic" prefix=". "/><text variable="volume" prefix=" "/><text variable="issue" prefix="（" suffix="）"/><text variable="page" prefix="："/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text variable="title"/><choose><if variable="editor"><text value=". In "/><text macro="foreign-editors"/><text variable="container-title" font-style="italic" prefix=", "/></if><else><text variable="container-title" font-style="italic" prefix=". "/></else></choose><text variable="page" prefix=", "/><text macro="foreign-publisher" prefix=". "/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet report song speech" match="any"><text variable="title" font-style="italic"/><text variable="edition" prefix="（" suffix=" edn）"/><text macro="foreign-publisher" prefix=". "/></else-if>
+    <else-if type="thesis"><text variable="title" font-style="italic"/><text variable="genre" prefix=". "/><text variable="publisher" prefix=", "/></else-if>
+    <else><text variable="title"/><text variable="container-title" prefix=". "/><text variable="URL" prefix=". "/></else>
+  </choose></macro>
+  <macro name="entry"><choose><if variable="original-author original-title" match="any"><text macro="chinese-entry"/><text value="。"/></if><else><text macro="foreign-entry"/><text value="."/></else></choose></macro>
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true"><sort><key macro="year"/><key macro="cite-author"/></sort><layout prefix="（" suffix="）" delimiter="；"><group delimiter=" "><text macro="cite-author"/><text macro="year"/><text variable="locator" prefix="："/></group></layout></citation>
+  <bibliography hanging-indent="true" entry-spacing="0" et-al-min="6" et-al-use-first="3"><sort><key macro="is-chinese"/><key macro="author-chinese"/><key macro="foreign-author"/><key macro="year"/></sort><layout><text macro="entry"/></layout></bibliography>
+</style>

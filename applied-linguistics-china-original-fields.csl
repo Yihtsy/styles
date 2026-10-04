@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="zh-CN" initialize-with=". ">
+  <info>
+    <title>语言文字应用（Original 字段版）</title>
+    <id>http://www.zotero.org/styles/applied-linguistics-china-original-fields</id>
+    <link href="http://www.zotero.org/styles/applied-linguistics-china-original-fields" rel="self"/>
+    <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
+    <category citation-format="numeric"/>
+    <category field="linguistics"/>
+    <summary>Original 字段版。格式证据：语言文字应用2022年第4期样例；适用于已核验的2022年版式，其他年份使用宜复核。作者、题名、刊名、出版社和出版地优先读取 Zotero Extra 解析出的 original-* 字段，缺失时回退普通字段。</summary>
+    <updated>2026-10-04T00:00:00+08:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
+  </info>
+  <locale xml:lang="zh"><terms><term name="page-range-delimiter">–</term><term name="et-al">等</term></terms></locale>
+  <locale xml:lang="en"><terms><term name="page-range-delimiter">–</term><term name="et-al">et al.</term></terms></locale>
+  <macro name="author">
+    <choose><if variable="original-author"><names variable="original-author"><name initialize="false" delimiter="、"/><substitute><text macro="title"/></substitute></names></if><else><choose><if locale="zh"><names variable="author"><name initialize="false" delimiter="、"/><substitute><text macro="title"/></substitute></names></if><else><names variable="author"><name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " and="text" delimiter-precedes-last="always"/><substitute><names variable="editor"/><text macro="title"/></substitute></names></else></choose></else></choose>
+  </macro>
+  <macro name="cite-author">
+    <choose><if variable="original-author"><names variable="original-author"><name form="short" initialize="false" delimiter="、" et-al-min="3" et-al-use-first="1"/></names></if><else><choose><if locale="zh"><names variable="author"><name form="short" initialize="false" delimiter="、" et-al-min="3" et-al-use-first="1"/></names></if><else><names variable="author"><name form="short" and="text" delimiter=", " delimiter-precedes-last="never" et-al-min="3" et-al-use-first="1"/></names></else></choose></else></choose>
+  </macro>
+  <macro name="title"><choose><if variable="original-title"><text variable="original-title"/></if><else><text variable="title"/></else></choose></macro>
+  <macro name="container"><choose><if variable="original-container-title"><text variable="original-container-title"/></if><else><text variable="container-title"/></else></choose></macro>
+  <macro name="publisher"><choose><if variable="original-publisher"><text variable="original-publisher"/></if><else><text variable="publisher"/></else></choose></macro>
+  <macro name="publisher-place"><choose><if variable="original-publisher-place"><text variable="original-publisher-place"/></if><else><text variable="publisher-place"/></else></choose></macro>
+  <macro name="normal-author"><choose><if locale="zh"><names variable="author"><name initialize="false" delimiter="、"/></names></if><else><names variable="author"><name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " and="text" delimiter-precedes-last="always"/></names></else></choose></macro>
+  <macro name="normal-title"><text variable="title"/></macro>
+  <macro name="normal-container"><text variable="container-title"/></macro>
+  <macro name="normal-publisher"><text variable="publisher"/></macro>
+  <macro name="normal-publisher-place"><text variable="publisher-place"/></macro>
+  <macro name="year"><date variable="issued"><date-part name="year"/></date></macro>
+  <macro name="type-code"><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text value="J"/></if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><text value="M"/></else-if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value="A"/></else-if>
+    <else-if type="thesis"><text value="D"/></else-if>
+    <else-if type="webpage post post-weblog" match="any"><text value="EB/OL"/></else-if>
+    <else-if type="report"><text value="R"/></else-if>
+    <else><text value="Z"/></else>
+  </choose></macro>
+  <macro name="editors"><names variable="editor"><name initialize-with=". " delimiter=", " and="text"/><label form="short" prefix=" (" suffix=")"/></names></macro>
+  <macro name="classic-entry"><text macro="author"/><text macro="year" prefix=" "/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="title"/><text macro="container" prefix="，《" suffix="》"/><text variable="volume" prefix=" "/><text variable="issue" prefix="第" suffix="期"/><text variable="page" prefix="："/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text macro="title"/><text value="，载"/><text macro="editors"/><text macro="container" prefix="《" suffix="》"/><text variable="page" prefix="："/><group delimiter="：" prefix="，"><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><text macro="title" prefix="《" suffix="》"/><group delimiter="：" prefix="，"><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
+    <else-if type="thesis"><text macro="title" prefix="《" suffix="》"/><text variable="genre" prefix="，"/><text macro="publisher" prefix="，"/></else-if>
+    <else><text macro="title"/><text macro="container" prefix="，"/><text variable="URL" prefix="，"/></else>
+  </choose></macro>
+  <macro name="typed-entry-first"><text macro="author" suffix=". "/><text macro="year" suffix=". "/><text macro="title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="container" prefix=". "/><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text variable="page" prefix=": "/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
+    <else-if type="thesis"><text macro="publisher" prefix=". "/><text variable="genre" prefix=", "/></else-if>
+    <else><text variable="URL" prefix=". "/><date variable="accessed" prefix=" [" suffix="]"><date-part name="year"/><date-part name="month" prefix="-" form="numeric-leading-zeros"/><date-part name="day" prefix="-" form="numeric-leading-zeros"/></date></else>
+  </choose></macro>
+  <macro name="typed-entry-last"><text macro="author" suffix=". "/><text macro="title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="container" prefix=". "/><text macro="year" prefix=", "/><text variable="volume" prefix=", "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/><text variable="page" prefix=": "/></else-if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/></else-if>
+    <else-if type="thesis"><text macro="publisher" prefix=". "/><text variable="genre" prefix=", "/><text macro="year" prefix=", "/></else-if>
+    <else><text variable="URL" prefix=". "/><text macro="year" prefix=", "/></else>
+  </choose></macro>
+  <macro name="typed-entry-normal-first"><text macro="normal-author" suffix=". "/><text macro="year" suffix=". "/><text macro="normal-title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="normal-container" prefix=". "/><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="normal-publisher-place"/><text macro="normal-publisher"/></group></else-if>
+    <else><text macro="normal-container" prefix=". "/><text macro="normal-publisher" prefix=". "/><text variable="page" prefix=": "/></else>
+  </choose></macro>
+  <macro name="typed-entry-normal-last"><text macro="normal-author" suffix=". "/><text macro="normal-title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
+    <if type="article-journal article-magazine article-newspaper" match="any"><text macro="normal-container" prefix=". "/><text macro="year" prefix=", "/><text variable="volume" prefix=", "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
+    <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="normal-publisher-place"/><text macro="normal-publisher"/></group><text macro="year" prefix=", "/></else-if>
+    <else><text macro="normal-container" prefix=". "/><text macro="normal-publisher" prefix=". "/><text macro="year" prefix=", "/><text variable="page" prefix=": "/></else>
+  </choose></macro>
+  <macro name="citation-author-year"><group delimiter=" "><text macro="cite-author"/><text macro="year"/><text variable="locator" prefix=": "/></group></macro>
+  <citation collapse="citation-number"><layout prefix="[" suffix="]" delimiter=","><text variable="citation-number"/></layout></citation>
+  <bibliography hanging-indent="true" entry-spacing="0"><layout suffix="."><text variable="citation-number" prefix="[" suffix="] "/><text macro="typed-entry-last"/></layout></bibliography>
+</style>
