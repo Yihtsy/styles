@@ -7,8 +7,8 @@
     <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
     <category citation-format="author-date"/>
     <category field="linguistics"/>
-    <summary>Original 字段版。格式证据：当代外语研究2022年样例；适用于已核验的2022年版式，其他年份使用宜复核。作者、题名、刊名、出版社和出版地优先读取 Zotero Extra 解析出的 original-* 字段，缺失时回退普通字段。</summary>
-    <updated>2026-10-04T00:00:00+08:00</updated>
+    <summary>Original 字段版。格式证据：当代外语研究2022、2026年样例；适用于已核验的2022、2026年版式，其他年份使用宜复核。作者、题名、刊名、出版社和出版地优先读取 Zotero Extra 解析出的 original-* 字段，缺失时回退普通字段。</summary>
+    <updated>2026-10-05T00:00:00+08:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
   </info>
   <locale xml:lang="zh"><terms><term name="page-range-delimiter">–</term><term name="et-al">等</term></terms></locale>
@@ -30,7 +30,8 @@
   <macro name="normal-publisher-place"><text variable="publisher-place"/></macro>
   <macro name="year"><date variable="issued"><date-part name="year"/></date></macro>
   <macro name="type-code"><choose>
-    <if type="article-journal article-magazine article-newspaper" match="any"><text value="J"/></if>
+    <if type="article-journal article-magazine" match="any"><text value="J"/></if>
+    <else-if type="article-newspaper"><text value="N"/></else-if>
     <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><text value="M"/></else-if>
     <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value="A"/></else-if>
     <else-if type="thesis"><text value="D"/></else-if>
@@ -38,6 +39,7 @@
     <else-if type="report"><text value="R"/></else-if>
     <else><text value="Z"/></else>
   </choose></macro>
+  <macro name="container-type-code"><choose><if variable="container-title"><text value="C"/></if></choose></macro>
   <macro name="editors"><names variable="editor"><name initialize-with=". " delimiter=", " and="text"/><label form="short" prefix=" (" suffix=")"/></names></macro>
   <macro name="classic-entry"><text macro="author"/><text macro="year" prefix=" "/><choose>
     <if type="article-journal article-magazine article-newspaper" match="any"><text macro="title"/><text macro="container" prefix="，《" suffix="》"/><text variable="volume" prefix=" "/><text variable="issue" prefix="第" suffix="期"/><text variable="page" prefix="："/></if>
@@ -48,17 +50,19 @@
   </choose></macro>
   <macro name="typed-entry-first"><text macro="author" suffix=". "/><text macro="year" suffix=". "/><text macro="title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
     <if type="article-journal article-magazine article-newspaper" match="any"><text macro="container" prefix=". "/><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
-    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text variable="page" prefix=": "/></else-if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><text macro="container-type-code" prefix="[" suffix="]"/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text variable="page" prefix=": "/></else-if>
     <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
-    <else-if type="thesis"><text macro="publisher" prefix=". "/><text variable="genre" prefix=", "/></else-if>
-    <else><text variable="URL" prefix=". "/><date variable="accessed" prefix=" [" suffix="]"><date-part name="year"/><date-part name="month" prefix="-" form="numeric-leading-zeros"/><date-part name="day" prefix="-" form="numeric-leading-zeros"/></date></else>
+    <else-if type="report"><text variable="genre" prefix=". "/><text variable="number" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
+    <else-if type="thesis"><text variable="genre" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group></else-if>
+    <else><text variable="URL" prefix=". "/><text variable="DOI" prefix=". DOI: "/><date variable="accessed" prefix=" [" suffix="]"><date-part name="year"/><date-part name="month" prefix="-" form="numeric-leading-zeros"/><date-part name="day" prefix="-" form="numeric-leading-zeros"/></date></else>
   </choose></macro>
   <macro name="typed-entry-last"><text macro="author" suffix=". "/><text macro="title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
     <if type="article-journal article-magazine article-newspaper" match="any"><text macro="container" prefix=". "/><text macro="year" prefix=", "/><text variable="volume" prefix=", "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
-    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/><text variable="page" prefix=": "/></else-if>
+    <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any"><text value=". In "/><text macro="editors"/><text macro="container" prefix=". "/><text macro="container-type-code" prefix="[" suffix="]"/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/><text variable="page" prefix=": "/></else-if>
     <else-if type="book graphic map motion_picture musical_score pamphlet song speech" match="any"><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/></else-if>
-    <else-if type="thesis"><text macro="publisher" prefix=". "/><text variable="genre" prefix=", "/><text macro="year" prefix=", "/></else-if>
-    <else><text variable="URL" prefix=". "/><text macro="year" prefix=", "/></else>
+    <else-if type="report"><text variable="genre" prefix=". "/><text variable="number" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/></else-if>
+    <else-if type="thesis"><text variable="genre" prefix=". "/><group delimiter=": " prefix=". "><text macro="publisher-place"/><text macro="publisher"/></group><text macro="year" prefix=", "/></else-if>
+    <else><text variable="URL" prefix=". "/><text variable="DOI" prefix=". DOI: "/><text macro="year" prefix=", "/></else>
   </choose></macro>
   <macro name="typed-entry-normal-first"><text macro="normal-author" suffix=". "/><text macro="year" suffix=". "/><text macro="normal-title"/><text macro="type-code" prefix="[" suffix="]"/><choose>
     <if type="article-journal article-magazine article-newspaper" match="any"><text macro="normal-container" prefix=". "/><text variable="volume" prefix=" "/><text variable="issue" prefix="(" suffix=")"/><text variable="page" prefix=": "/></if>
