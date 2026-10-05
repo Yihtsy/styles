@@ -4,10 +4,11 @@
     <title>当代外语研究（Original 字段版）</title>
     <id>http://www.zotero.org/styles/contemporary-foreign-languages-studies-original-fields</id>
     <link href="http://www.zotero.org/styles/contemporary-foreign-languages-studies-original-fields" rel="self"/>
+    <link href="https://www.qk.sjtu.edu.cn/cfls/CN/column/item759.shtml" rel="documentation"/>
     <author><name>Tsy Yih</name><email>yihtsy@outlook.com</email></author>
     <category citation-format="author-date"/>
     <category field="linguistics"/>
-    <summary>Original 字段版。格式证据：当代外语研究2022、2026年样例；适用于已核验的2022、2026年版式，其他年份使用宜复核。作者、题名、刊名、出版社和出版地优先读取 Zotero Extra 解析出的 original-* 字段，缺失时回退普通字段。</summary>
+    <summary>Original 字段版。格式证据：当代外语研究2022、2026年样例；官方《当代外语研究》稿例，发布日期2026-03-26，网址：https://www.qk.sjtu.edu.cn/cfls/CN/column/item759.shtml，本地存档：D:\OneDrive\L\库藏\期刊论文\当代外语研究 C扩\2026\官方稿例\20260326_《当代外语研究》稿例.pdf。适用于已核验的2022、2026年版式，其他年份使用宜复核。作者、题名、刊名、出版社和出版地优先读取 Zotero Extra 解析出的 original-* 字段，缺失时回退普通字段。</summary>
     <updated>2026-10-05T00:00:00+08:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</rights>
   </info>

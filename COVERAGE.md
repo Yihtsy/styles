@@ -11,7 +11,7 @@
 
 | 期刊 | CSSCI层级 | 样例年份 | CSL |
 |---|---|---:|---|
-| 当代外语研究 | 来源 | 2022、2026 | original/direct |
+| 当代外语研究 | 来源 | 2022、2026；官方稿例发布于2026-03-26 | original/direct |
 | 当代修辞学 | 来源 | 2024 | original/direct |
 | 当代语言学 | 来源 | 2022 | original/direct |
 | 方言 | 来源 | 2024 | original/direct |
